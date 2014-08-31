@@ -1,5 +1,7 @@
-# Laravel Homestead
+# Custom Homestead Vagrant box configuration
 
-The official Laravel local development environment.
+## Addons
 
-Official documentation [is located here](http://laravel.com/docs/homestead?version=4.2).
+I've created additional scripts to install Mailcatcher and configure XDEBUG support into Homestead box
+
+Official Laravel Homestead documentation [is located here](http://laravel.com/docs/homestead?version=4.2).
