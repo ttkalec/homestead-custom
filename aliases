@@ -6,6 +6,9 @@ alias c='clear'
 
 alias cc='vendor/bin/codecept'
 alias art='php artisan'
+alias phpunit='vendor/bin/phpunit'
+alias mail='sudo mailcatcher --ip=192.168.10.10'
+alias queue='php artisan queue:listen --tries=3'
 
 function serve() {
 	if [[ "$1" && "$2" ]]

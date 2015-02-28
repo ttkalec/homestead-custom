@@ -3,19 +3,18 @@ ip: "192.168.10.10"
 memory: 2048
 cpus: 1
 
-authorize: /code/Homestead/public
+authorize: /Users/ttkalec/.ssh/public.psk
 
 keys:
-    - /code/Homestead/private.ppk
-
+    - /Users/ttkalec/.ssh/private.ppk
 folders:
-    - map: /code/snaptap_backend
-      to: /home/vagrant/code/snaptap_backend
-
+    - map: /coding/jwt
+      to: /home/vagrant/coding/jwt
 sites:
-    - map: snaptap.dev
-      to: /home/vagrant/code/snaptap_backend/public
-
+    - map: jwt.dev
+      to: /home/vagrant/coding/jwt/public
+    - map: api.jwt.dev
+      to: /home/vagrant/coding/jwt/public
 variables:
     - key: APP_ENV
       value: local

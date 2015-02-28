@@ -19,6 +19,8 @@ class Homestead
     config.vm.network "forwarded_port", guest: 80, host: 8000
     config.vm.network "forwarded_port", guest: 3306, host: 33060
     config.vm.network "forwarded_port", guest: 5432, host: 54320
+    config.vm.network "forwarded_port", guest: 1080, host: 1080
+    config.vm.network "forwarded_port", guest: 6379, host: 63790
 
     # Configure The Public Key For SSH Access
     config.vm.provision "shell" do |s|
@@ -42,7 +44,8 @@ class Homestead
 
     # Register All Of The Configured Shared Folders
     settings["folders"].each do |folder|
-      config.vm.synced_folder folder["map"], folder["to"], type: folder["type"] ||= nil
+      config.vm.synced_folder folder["map"], folder["to"], type: folder["type"] ||= nil,
+	  rsync__exclude: ".git/"
     end
 	
     # The below is used for configuring a new vagrant box
@@ -56,6 +59,10 @@ class Homestead
           s.inline = "bash /vagrant/scripts/serve.sh $1 $2"
           s.args = [site["map"], site["to"]]
       end
+    end
+	
+	 config.vm.provision "shell" do |s|
+      s.inline = "bash /vagrant/scripts/addons.sh"
     end
 	
 	 # The below is used for extra calls when booting up an existing box
